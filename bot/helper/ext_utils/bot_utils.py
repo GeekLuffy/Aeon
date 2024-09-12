@@ -234,8 +234,8 @@ def progress_bar(pct):
         pct = float(pct.strip("%"))
     p = min(max(pct, 0), 100)
     c_full = int((p + 5) // 10)
-    p_str = "●" * c_full
-    p_str += "○" * (10 - c_full)
+    p_str = "■" * c_full
+    p_str += "□" * (10 - c_full)
     return p_str
 
 
@@ -248,7 +248,7 @@ def source(self):
 
 
 def get_readable_message():
-    msg = "<b>Powered by Aeon</b>\n\n"
+    msg = "<b>⚡ Powered by Edge ⚡</b>\n\n"
     button = None
     tasks = len(download_dict)
     current_time = get_readable_time(time() - bot_start_time)
@@ -263,17 +263,17 @@ def get_readable_message():
     for download in list(download_dict.values())[
         STATUS_START : STATUS_LIMIT + STATUS_START
     ]:
-        msg += f"<b>{download.status()}:</b> {escape(f'{download.name()}')}\n"
-        msg += f"by {source(download)}\n"
+        msg += f"✨ <b>{download.status()}:</b> {escape(f'{download.name()}')}\n"
+        msg += f"🫧by {source(download)}\n"
         if download.status() not in [
             MirrorStatus.STATUS_SPLITTING,
             MirrorStatus.STATUS_SEEDING,
             MirrorStatus.STATUS_PROCESSING,
         ]:
-            msg += f"<blockquote><code>{progress_bar(download.progress())}</code> {download.progress()}"
-            msg += f"\n{download.processed_bytes()} of {download.size()}"
-            msg += f"\nSpeed: {download.speed()}"
-            msg += f"\nEstimated: {download.eta()}"
+            msg += f"<blockquote>[<code>{progress_bar(download.progress())}</code>] {download.progress()}"
+            msg += f"\n📥{download.processed_bytes()} of {download.size()}"
+            msg += f"\n⚡️Speed: {download.speed()}"
+            msg += f"\n⌛️Estimated: {download.eta()}"
             if hasattr(download, "seeders_num"):
                 with contextlib.suppress(Exception):
                     msg += f"\nSeeders: {download.seeders_num()} | Leechers: {download.leechers_num()}"
