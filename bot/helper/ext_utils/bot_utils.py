@@ -263,7 +263,7 @@ def get_readable_message():
     for download in list(download_dict.values())[
         STATUS_START : STATUS_LIMIT + STATUS_START
     ]:
-        msg += f"✨ <b>{download.status()}:</b> {escape(f'{download.name()}')}\n"
+        msg += f"<b>{download.status()}:</b> {escape(f'{download.name()}')}\n"
         msg += f"🫧 by {source(download)}\n"
         if download.status() not in [
             MirrorStatus.STATUS_SPLITTING,
@@ -285,7 +285,7 @@ def get_readable_message():
             msg += f"\nTime: {download.seeding_time()}"
         else:
             msg += f"<blockquote>Size: {download.size()}"
-        msg += f"\n⌚Elapsed: {get_readable_time(time() - download.message.date.timestamp())}</blockquote>"
+        msg += f"\n⏰ Elapsed: {get_readable_time(time() - download.message.date.timestamp())}</blockquote>"
         msg += f"\n<blockquote>❌ /stop_{download.gid()[:8]}</blockquote>\n\n"
     if len(msg) == 0:
         return None, None
