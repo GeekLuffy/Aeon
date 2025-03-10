@@ -35,7 +35,7 @@ async def get_streams(file):
 # TODO Lots of work need
 async def get_watermark_cmd(file, key):
     temp_file = f"{file}.temp.mkv"
-    font_path = "default.otf"
+    font_path = "chunkfive.regular.ttf"
 
     cmd = [
         "xtra",
@@ -47,7 +47,7 @@ async def get_watermark_cmd(file, key):
         "-i",
         file,
         "-vf",
-        f"drawtext=text='{key}':fontfile={font_path}:fontsize=20:fontcolor=white:x=10:y=10",
+        f"drawtext=text='{key}':fontfile={font_path}:fontsize=20:fontcolor=white@0.4:x=10:y=10",
         # "-preset",
         # "ultrafast",
         "-threads",
