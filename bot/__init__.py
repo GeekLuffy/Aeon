@@ -115,24 +115,30 @@ sabnzbd_client = SabnzbdClient(
     api_key="mltb",
     port="8070",
 )
-subprocess.run(["xnox", "-d", f"--profile={os.getcwd()}"], check=False)
-subprocess.run(
-    [
-        "xnzb",
-        "-f",
-        "sabnzbd/SABnzbd.ini",
-        "-s",
-        ":::8070",
-        "-b",
-        "0",
-        "-d",
-        "-c",
-        "-l",
-        "0",
-        "--console",
-    ],
-    check=False,
-)
-
+if shutil.which("xnox"):
+    subprocess.run(["xnox", "-d", f"--profile={os.getcwd()}"], check=False)
+else:
+    LOGGER.warning("Skipping 'xnox' because it is not installed.")
+    
+if shutil.which("xnzb"):
+    subprocess.run(
+        [
+            "xnzb",
+            "-f",
+            "sabnzbd/SABnzbd.ini",
+            "-s",
+            ":::8070",
+            "-b",
+            "0",
+            "-d",
+            "-c",
+            "-l",
+            "0",
+            "--console",
+        ],
+        check=False,
+    )
+else:
+    LOGGER.warning("Skipping 'xnzb' because it is not installed.")
 
 scheduler = AsyncIOScheduler(event_loop=bot_loop)
