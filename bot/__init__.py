@@ -119,7 +119,7 @@ if shutil.which("xnox"):
     subprocess.run(["xnox", "-d", f"--profile={os.getcwd()}"], check=False)
 else:
     LOGGER.warning("Skipping 'xnox' because it is not installed.")
-    
+
 if shutil.which("xnzb"):
     subprocess.run(
         [
