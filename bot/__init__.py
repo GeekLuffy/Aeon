@@ -2,7 +2,7 @@
 from uvloop import install
 
 install()
-
+import shutil
 import os
 import subprocess
 from asyncio import Lock, new_event_loop, set_event_loop
