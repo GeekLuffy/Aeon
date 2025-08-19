@@ -4,8 +4,8 @@ from uvloop import install
 install()
 
 import os
-import subprocess
 import shutil
+import subprocess
 from asyncio import Lock, new_event_loop, set_event_loop
 from datetime import datetime
 from logging import (
